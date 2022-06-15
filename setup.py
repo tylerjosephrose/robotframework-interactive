@@ -5,7 +5,7 @@ setup(
     entry_points={
         "console_scripts": ['robotframeworkinteractive = robotframeworkinteractive.robotframeworkinteractive:main']
     },
-    version='1.0.1',
+    version='1.0.2',
     description='Run Robot Framework interactively from the command line',
     url='https://github.com/tylerjosephrose/robotframework-interactive',
     author='Tyler Rose',

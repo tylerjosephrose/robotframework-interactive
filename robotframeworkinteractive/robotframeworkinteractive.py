@@ -42,6 +42,7 @@ def alter_commands(cmd):
     return cmd
 
 
+#TODO fix how list and dictionary are stored as variables
 def run_rf(cmd):
     keyword, *args = re.split('\s{2,}',cmd)
     if keyword.lower() == 'library':
@@ -53,9 +54,8 @@ def run_rf(cmd):
     elif keyword.lower() == 'variables':
         return BuiltIn().import_variables(args[0])
     elif keyword.startswith(('$', '@', '&', '%')):
-        value = run_rf('    '.join(args))
         variable = keyword.replace('=', '').strip()
-        BuiltIn().set_local_variable(variable, value)
+        BuiltIn().set_local_variable(variable, *args[1:])
     elif keyword.startswith('#'):
         pass
     elif keyword == '':
