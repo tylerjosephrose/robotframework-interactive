@@ -1,12 +1,17 @@
 from setuptools import setup
 
+with open('README.md') as readme:
+    long_description = readme.read()
+
 setup(
     name='robotframeworkinteractive',
     entry_points={
         "console_scripts": ['robotframeworkinteractive = robotframeworkinteractive.robotframeworkinteractive:main']
     },
-    version='1.0.2',
+    version='1.0.3.1',
     description='Run Robot Framework interactively from the command line',
+    long_description_content_type='text/markdown',
+    long_description=long_description,
     url='https://github.com/tylerjosephrose/robotframework-interactive',
     author='Tyler Rose',
     author_email='tylerjosephrose@gmail.com',

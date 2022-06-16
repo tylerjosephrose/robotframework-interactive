@@ -6,6 +6,7 @@ import robot
 from robot.libdoc import LibraryDocumentation
 from robot.libraries.BuiltIn import BuiltIn
 
+
 if sys.version_info.major == 3 and sys.version_info.minor > 9:
     import collections
     collections.Callable = collections.abc.Callable
@@ -42,7 +43,6 @@ def alter_commands(cmd):
     return cmd
 
 
-#TODO fix how list and dictionary are stored as variables
 def run_rf(cmd):
     keyword, *args = re.split('\s{2,}',cmd)
     if keyword.lower() == 'library':
@@ -55,7 +55,11 @@ def run_rf(cmd):
         return BuiltIn().import_variables(args[0])
     elif keyword.startswith(('$', '@', '&', '%')):
         variable = keyword.replace('=', '').strip()
-        BuiltIn().set_local_variable(variable, *args[1:])
+        if args[0] in ['Create List', 'Create Dictionary', 'Set Variable']:
+            BuiltIn().set_local_variable(variable, *args[1:])
+        else:
+            value = run_rf('    '.join(args))
+            BuiltIn().set_local_variable(variable, value)
     elif keyword.startswith('#'):
         pass
     elif keyword == '':

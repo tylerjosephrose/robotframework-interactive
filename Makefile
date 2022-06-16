@@ -7,7 +7,7 @@ build:
 	python setup.py bdist_wheel
 
 upload_test:
-	python -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+	python -m twine upload --repository testpypi dist/*
 
 upload:
 	python -m twine upload dist/*
