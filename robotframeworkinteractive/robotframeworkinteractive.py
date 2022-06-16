@@ -44,28 +44,31 @@ def alter_commands(cmd):
 
 
 def run_rf(cmd):
-    keyword, *args = re.split('\s{2,}',cmd)
-    if keyword.lower() == 'library':
-        add_commands(args[0])
-        return BuiltIn().import_library(args[0])
-    elif keyword.lower() == 'resource':
-        add_commands(args[0])
-        return BuiltIn().import_resource(args[0])
-    elif keyword.lower() == 'variables':
-        return BuiltIn().import_variables(args[0])
-    elif keyword.startswith(('$', '@', '&', '%')):
-        variable = keyword.replace('=', '').strip()
-        if args[0] in ['Create List', 'Create Dictionary', 'Set Variable']:
-            BuiltIn().set_local_variable(variable, *args[1:])
+    try:
+        keyword, *args = re.split('\s{2,}',cmd)
+        if keyword.lower() == 'library':
+            add_commands(args[0])
+            return BuiltIn().import_library(args[0])
+        elif keyword.lower() == 'resource':
+            add_commands(args[0])
+            return BuiltIn().import_resource(args[0])
+        elif keyword.lower() == 'variables':
+            return BuiltIn().import_variables(args[0])
+        elif keyword.startswith(('$', '@', '&', '%')):
+            variable = keyword.replace('=', '').strip()
+            if args[0] in ['Create List', 'Create Dictionary', 'Set Variable']:
+                BuiltIn().set_local_variable(variable, *args[1:])
+            else:
+                value = run_rf('    '.join(args))
+                BuiltIn().set_local_variable(variable, value)
+        elif keyword.startswith('#'):
+            pass
+        elif keyword == '':
+            pass
         else:
-            value = run_rf('    '.join(args))
-            BuiltIn().set_local_variable(variable, value)
-    elif keyword.startswith('#'):
-        pass
-    elif keyword == '':
-        pass
-    else:
-        return BuiltIn().run_keyword(keyword, *args)
+            return BuiltIn().run_keyword(keyword, *args)
+    except Exception as e:
+        rfprint(e)
 
 
 def completer(text, state):
@@ -84,6 +87,7 @@ def completer(text, state):
 def rfprint(obj):
     lines = str(obj).splitlines()
     for line in lines:
+        line = re.sub('([$@&%])', r'\\\1', line)
         line = line.replace(" ", "${SPACE}")
         run_rf(f'Log To Console    {line}')
 
