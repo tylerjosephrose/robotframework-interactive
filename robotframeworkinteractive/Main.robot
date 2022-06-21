@@ -4,5 +4,5 @@ Library    robotframeworkinteractive.py
 
 
 *** Tasks ***
-Main
+Robot Framework Interactive
     Run Interactive

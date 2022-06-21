@@ -3,6 +3,7 @@ clean:
 	rm -rf dist
 
 build:
+	python -m unittest discover tests
 	python setup.py sdist
 	python setup.py bdist_wheel
 
