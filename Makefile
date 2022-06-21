@@ -1,6 +1,7 @@
 clean:
 	rm -rf build
 	rm -rf dist
+	rm -rf robotframeworkinteractive.egg-info
 
 build:
 	python -m unittest discover tests

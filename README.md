@@ -4,6 +4,8 @@ important to note that not all RF keywords and commands will work as this is rea
 what to run.
 
 ![CI](https://github.com/tylerjosephrose/robotframework-interactive/actions/workflows/ci.yaml/badge.svg)
+![CD](https://github.com/tylerjosephrose/robotframework-interactive/actions/workflows/cd.yaml/badge.svg)
+![CodeQL](https://github.com/tylerjosephrose/robotframework-interactive/actions/workflows/codeql-analysis.yml/badge.svg)
 
 ## Installation
 `pip install robotframeworkinteractive`
