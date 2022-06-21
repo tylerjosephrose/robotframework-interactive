@@ -3,6 +3,8 @@ This project is designed to allow Robot Framework (RF) commands to be ran intera
 important to note that not all RF keywords and commands will work as this is reading the input string and determining 
 what to run.
 
+![CI](https://github.com/tylerjosephrose/robotframework-interactive/actions/workflows/ci.yaml/badge.svg)
+
 ## Installation
 `pip install robotframeworkinteractive`
 

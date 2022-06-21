@@ -8,7 +8,8 @@ setup(
     entry_points={
         "console_scripts": ['robotframeworkinteractive = robotframeworkinteractive.robotframeworkinteractive:main']
     },
-    version='1.0.4',
+    version='1.0.5',
+    python_requires='>=3.8',
     description='Run Robot Framework interactively from the command line',
     long_description_content_type='text/markdown',
     long_description=long_description,
