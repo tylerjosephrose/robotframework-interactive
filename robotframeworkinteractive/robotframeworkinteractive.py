@@ -154,6 +154,8 @@ Export
                 pass
             else:
                 result = BuiltIn().run_keyword(keyword, *args)
+                if not keyword.startswith('Log To Console'):
+                    self.rfprint(result)
 
             if log:
                 if is_setting:
