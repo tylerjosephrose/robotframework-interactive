@@ -275,7 +275,8 @@ Export
             type(patched_builtin.return_value).import_resource.assert_not_called()
             type(patched_builtin.return_value).import_variables.assert_not_called()
             type(patched_builtin.return_value).set_local_variable.assert_called_once_with('${TEST}', 'bad')
-            type(patched_builtin.return_value).run_keyword.assert_called_once_with('Get On Session', 'beeceptor', '/ready')
+            type(patched_builtin.return_value).run_keyword.assert_any_call('Get On Session', 'beeceptor', '/ready')
+            type(patched_builtin.return_value).run_keyword.assert_called_with('Log To Console', 'bad')
             self.assertEqual('good', result)
 
     def test_run_rf_comment(self):
